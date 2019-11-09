@@ -8,8 +8,12 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,12 +22,16 @@ import androidx.fragment.app.Fragment;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,6 +42,11 @@ public class MainActivity extends AppCompatActivity
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     private static final int RC_SIGN_IN = 11;
     List<AuthUI.IdpConfig> providers;
+    ListView listView;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+    FirebaseListAdapter<details> detailsFirebaseListAdapter;
+    ArrayList<String> store_data;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -41,6 +54,26 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        listView = (ListView)findViewById(R.id.list_view);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference().child("database");
+
+        detailsFirebaseListAdapter = new FirebaseListAdapter<details>(this,details.class,R.layout.details,
+               databaseReference ) {
+            @Override
+            protected void populateView(View v, details model, int position) {
+                TextView textView1 = (TextView)v.findViewById(R.id.data_textView1);
+                textView1.setText(model.getTopic());
+                TextView textView2 = (TextView)v.findViewById(R.id.data_textView2);
+                textView2.setText(model.getMessage());
+
+            }
+        };
+        listView.setAdapter(detailsFirebaseListAdapter);
+
+
+
         providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.GoogleBuilder().build());
