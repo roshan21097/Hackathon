@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "741402185599",
+    "firebase_url": "https://hackathon-e1a9d.firebaseio.com",
+    "project_id": "hackathon-e1a9d",
+    "storage_bucket": "hackathon-e1a9d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741402185599:android:0f9efe212a175aab43544a",
+        "android_client_info": {
+          "package_name": "com.vinay.hackathon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741402185599-76cm5p9hr1iijo39grqahfrs7g3s91di.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vinay.hackathon",
+            "certificate_hash": "9ae2148678ce3196fc90debc2a3c584c2a0af547"
+          }
+        },
+        {
+          "client_id": "741402185599-qee3j1bq31kuton0va5cfi35n8q9gbpk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaS4fx0kRZ90QQVOF0ifj30_qKEm1c-10"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741402185599-qee3j1bq31kuton0va5cfi35n8q9gbpk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
